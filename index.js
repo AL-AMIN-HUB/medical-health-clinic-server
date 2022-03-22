@@ -20,6 +20,7 @@ async function run() {
 
     const database = client.db("medical-health-clinic");
     const servicesCollection = await database.collection("services");
+    const appointmentsCollection = await database.collection("appointments");
 
     // GET API
     app.get("/allServices", async (req, res) => {
@@ -43,6 +44,12 @@ async function run() {
       const query = { _id: ObjectId(id) };
       const service = await servicesCollection.findOne(query);
       res.json(service);
+    });
+
+    // POST
+    app.post("/patientAppointments", async (req, res) => {
+      const result = await appointmentsCollection.insertOne(req.body);
+      res.json(result);
     });
   } finally {
     // await client.close();s
