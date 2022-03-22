@@ -58,6 +58,14 @@ async function run() {
       const result = await appointmentsCollection.insertOne(appointment);
       res.json(result);
     });
+
+    // delete
+    app.delete("/allAppointments/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await appointmentsCollection.deleteOne(query);
+      res.json(result);
+    });
   } finally {
     // await client.close();s
   }
