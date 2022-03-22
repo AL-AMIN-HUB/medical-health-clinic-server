@@ -10,7 +10,7 @@ const port = express.port || 5000;
 // use app
 app.use(cors());
 
-// mongodb connect
+// mongodb connect with my server
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o4xkh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
