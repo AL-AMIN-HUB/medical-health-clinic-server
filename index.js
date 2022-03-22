@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 // use app
 app.use(cors());
+app.use(express.json());
 
 // mongodb connect with my server
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.o4xkh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
@@ -48,8 +49,10 @@ async function run() {
 
     // POST
     app.post("/patientAppointments", async (req, res) => {
-      const result = await appointmentsCollection.insertOne(req.body);
-      res.json(result);
+      const appointment = req.body;
+      console.log(appointment);
+      /*  const result = await appointmentsCollection.insertOne(appointment);
+      res.json(result); */
     });
   } finally {
     // await client.close();s
