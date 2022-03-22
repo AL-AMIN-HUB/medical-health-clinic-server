@@ -33,6 +33,10 @@ async function run() {
       const result = await servicesCollection.find({}).toArray();
       res.json(result);
     });
+    app.get("/allAppointments", async (req, res) => {
+      const result = await appointmentsCollection.find({}).toArray();
+      res.json(result);
+    });
     // find one service
     app.get("/allServices/:id", async (req, res) => {
       const id = req.params.id;
@@ -51,8 +55,8 @@ async function run() {
     app.post("/patientAppointments", async (req, res) => {
       const appointment = req.body;
       console.log(appointment);
-      /*  const result = await appointmentsCollection.insertOne(appointment);
-      res.json(result); */
+      const result = await appointmentsCollection.insertOne(appointment);
+      res.json(result);
     });
   } finally {
     // await client.close();s
